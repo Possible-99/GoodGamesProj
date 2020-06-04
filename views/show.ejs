@@ -1,0 +1,46 @@
+<%- include("partials/header.ejs")%>
+<section>
+    <div class="game-card">
+        <div class="text-white text-center p-2 title-card"><%=gameData.name%> </div>
+        <img src="<%=gameData.background_image%>" alt="" class="img-card img-fluid">
+        <div class="text-center color-likePurple">
+            <h3 class="p-0 m-0 text-white">Released</h3>
+            <p class="text-white"><%=gameData.released%></p>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container color-light-blue">
+        <div class="description-game ">
+            <p>
+            <h2 class="desc">Description</h2>
+            </p>
+            <%-gameData.description %>
+        </div>
+    </div>
+    <div class="rating-game mr-0 pr-0 mt-0">
+        <h5 class="text-white text-center mb-0">Rating</h5>
+        <h1 class="text-white hvr-icon-pop px-1 mt-0 pt-0 "><%= gameData.rating%><i
+                class="fas fa-star fa-sm hvr-icon"></i>
+        </h1>
+    </div>
+    <% if(gameData.reddit_url.length>1){ %>
+    <a href=" <%=gameData.reddit_url%> " class="btn color-reddit text-white p-2">Reddit <i
+            class="fab fa-reddit fa-lg"></i></a>
+    <% } %>
+    <% if(gameData.clip.clip.length>1){ %>
+    <div class="video-space container px-0 text-center text-white">
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+            poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+            <source src="<%= gameData.clip.clip %> " type="video/mp4" />
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+    <% } %>
+
+</section>
+<%- include("partials/footer.ejs")%>

@@ -1,0 +1,276 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background: #3B8BE8 !important;
+}
+.navbar{
+    background: #B23850;
+}
+.navbar a{
+    color: #E7E3D4;
+    font-size: 1.2rem;
+}
+#inp-contai{
+    background: white;
+    background: url("https://images.unsplash.com/photo-1585857189141-003ab7bbbe10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+    padding: 6rem;
+    background-position: center;
+    background-size: cover;
+    opacity: 100%;
+    
+}
+.form-control{
+    height: 3rem !important;
+    font-size: 1.5rem !important;
+    color: black;
+}
+#text-search{
+        text-shadow: 3px 3px black;
+}
+
+.upcoming{
+    padding: 3rem;
+    background: #8590aa;
+    text-transform: uppercase;
+}
+.color-card{
+    background: #E7E3D4;
+}
+
+.last-color{
+    background: #C4DBF6 !important;
+}
+.card-color-title{
+    background: #B23850;
+}
+.fa-playstation{
+    color: white;
+    background: #003791;
+}
+.fa-xbox{
+    color: white;
+    background:#0E7A0D ;
+}
+.fa-gamepad{
+    color: white;
+    background: #e60012;
+}
+.fa-laptop{
+    color: white;
+    background: #DC181B;
+}
+
+/* Search page */
+.set-height{
+    height: 13rem;
+    width: 100%;
+}
+
+.game-name-search{
+    color: white;
+    position: relative;
+    font-size: 3rem;
+    top: 4.2rem;
+    left: 1rem;
+}
+.link-section{
+    position: fixed;
+    width: 30%;
+    height: 30%;
+    background: red;
+}
+
+.bg-game-name{
+    background: #8590aa;
+}
+.bg-of-buttons{
+    background: black;
+}
+
+.reddit-button{
+    background: #FF4500 !important;
+    color: white !important; 
+    width: 100% !important;
+}
+.see-more-button{
+    background: #C4DBF6 !important;
+    color: white;
+    width: 100%;
+}
+.fa-star{
+    color: #FFDF00;
+}
+/* Grow Shadow */
+.hvr-grow-shadow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+}
+/* Grow Shadow */
+.hvr-grow-shadow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+/* Sweep To Right */
+.hvr-sweep-to-right {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+.hvr-sweep-to-right:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #084481;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
+    color: white;
+}
+.hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+/* Icon Pop */
+@-webkit-keyframes hvr-icon-pop {
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+}
+@keyframes hvr-icon-pop {
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+}
+.hvr-icon-pop {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+.hvr-icon-pop .hvr-icon {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.hvr-icon-pop:hover .hvr-icon, .hvr-icon-pop:focus .hvr-icon, .hvr-icon-pop:active .hvr-icon {
+    -webkit-animation-name: hvr-icon-pop;
+    animation-name: hvr-icon-pop;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+/* Show Page */
+.jumb-color{
+    background: #8590aa !important;
+}
+
+.image-size-show{
+    width: 30%;
+    height:20rem;
+}
+
+.game-card{
+    background: white;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+.title-card{
+    background: #8590AA;
+    font-size: 2rem;
+}
+.img-card{
+    width: 100%;
+    height: 30rem !important;
+}
+.color-likePurple{
+    background: #8590AA
+}
+.color-likeWhite{
+    background: #E7E3D4;
+}
+.color-light-blue{
+    background: #C4DBF6;
+}
+.description-game{
+    font-size: 1rem;
+}
+
+.desc{
+    background: rgb(248, 2, 2);
+    display: inline-block;
+    color: white;
+}
+
+.rating-game{
+    background: black;
+    padding: 0.2rem;
+    float: right;
+    position: relative;
+    right: 4.2rem;
+}
+.color-reddit{
+    background: #FF4500 !important;
+    position: relative;
+    left: 4.3rem;
+}
+.video-space{
+    margin-top: 5rem;
+    background: #8590aa;
+}

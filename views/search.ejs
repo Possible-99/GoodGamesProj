@@ -1,0 +1,54 @@
+<%- include("partials/header.ejs")%>
+<div class="conainer-fluid">
+    <div class="row">
+        <div class="col-5 mr-0 pr-0 ">
+            <a href="/game/<%=gameSearchResults[0].id%>"><img src="<%=gameSearchResults[0].background_image%>" alt=""
+                    class="set-height  "> </a>
+        </div>
+        <div class="col-4 bg-game-name ml-0 pl-0 pr-0 mr-0 set-height hvr-sweep-to-right">
+            <a href="/game/<%=gameSearchResults[0].id%>" class="btn set-height">
+                <div class="game-name-search"><%=gameSearchResults[0].name%></div>
+            </a>
+        </div>
+        <div class="col-3 bg-of-buttons ml-0 pl-0 set-height">
+            <a href="<%=gameSearchResults[0].reddit_url%> "
+                class="reddit-button mx-0 text-center p-3 btn rounded-0 hvr-grow-shadow">Reddit <i
+                    class="fab fa-reddit fa-lg"></i></a>
+            <a href="/game/<%=gameSearchResults[0].id%>"
+                class="btn see-more-button ml-0 text-center p-3 rounded-0 hvr-grow-shadow">See more</a>
+            <div class="text-center">
+                <h5 class="mb-0 pb-0 text-white">Rating</h5>
+                <h2 class="display-4 text-white hvr-icon-pop"><%= gameSearchResults[0].rating%><i
+                        class="fas fa-star fa-sm hvr-icon"></i></h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <% if(gameSearchResults[1]){ %>
+        <% gameSearchResults[1].results.forEach(function(gameSerie){ %>
+        <div class="col-5 mr-0 pr-0 ">
+            <a href="/game/<%=gameSerie.id%>"><img src="<%=gameSerie.background_image%>" alt="" class="set-height">
+            </a>
+        </div>
+        <div class="col-4 bg-game-name ml-0 pl-0 pr-0 mr-0 set-height hvr-sweep-to-right">
+            <a href="/game/<%=gameSerie.id%>" class="btn set-height">
+                <div class="game-name-search"><%=gameSerie.name%></div>
+            </a>
+        </div>
+        <div class="col-3 bg-of-buttons ml-0 pl-0 set-height">
+            <a href="<%=gameSerie.reddit_url%> "
+                class="reddit-button mx-0 text-center p-3 btn rounded-0 hvr-grow-shadow">Reddit <i
+                    class="fab fa-reddit fa-lg"></i></a>
+            <a href="/game/<%=gameSerie.id%>"
+                class="btn see-more-button ml-0 text-center p-3 rounded-0 hvr-grow-shadow">See more</a>
+            <div class="text-center">
+                <h5 class="mb-0 pb-0 text-white">Rating</h5>
+                <h2 class="display-4 text-white hvr-icon-pop"><%= gameSerie.rating%><i
+                        class="fas fa-star fa-sm hvr-icon"></i></h2>
+            </div>
+        </div>
+        <% }) %>
+        <% } %>
+    </div>
+</div>
+<%- include("partials/footer.ejs")%>
