@@ -21,10 +21,18 @@ app.get("/", function (req, res) {
 })
 app.get('/search', function (req, res) {
     //Make 2 requests for obtaining the games´s information and the series information
+    multipleRequests(req.query.game, req, res, "search.ejs")
+});
+
+app.get("/game/:id", function (req, res) {
+    multipleRequests(req.params.id, req, res, "show.ejs")
+})
+
+function multipleRequests(game, req, res, templateName) {
     async.parallel([
         //game info
         function (done) {
-            var queryName = req.query.game;
+            var queryName = game;
             //change the spaces for hiffens
             var gameName = queryName.replace(/\s+/g, '-').toLowerCase()
             var gmSearchURL = "https://api.rawg.io/api/games/" + gameName;
@@ -37,7 +45,7 @@ app.get('/search', function (req, res) {
         },
         // Game series
         function (done) {
-            var queryName = req.query.game;
+            var queryName = game;
             var gameName = queryName.replace(/\s+/g, '-').toLowerCase()
             var gmSearchURL = "https://api.rawg.io/api/games/" + gameName + "/game-series";
             request(gmSearchURL, function (error, response, body) {
@@ -50,22 +58,11 @@ app.get('/search', function (req, res) {
             });
         }], function (err, gameSearchResults) {
             //Send an array with the info, in gameSearchResults[0] is the info of the game, gameSearchResults[1]-->Game Series data
-            res.render("search.ejs", {
+            res.render(templateName, {
                 gameSearchResults: gameSearchResults
             });
         })
-});
-
-app.get("/game/:id", function (req, res) {
-    var gamesId = req.params.id
-    var gameSearchUrl = "https://api.rawg.io/api/games/" + gamesId
-    request(gameSearchUrl, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var gameData = JSON.parse(body)
-            res.render("show.ejs", { gameData: gameData })
-        }
-    })
-})
+}
 
 app.listen(3000, function () {
     console.log("Server is on")

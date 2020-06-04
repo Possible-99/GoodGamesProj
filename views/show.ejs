@@ -1,37 +1,37 @@
 <%- include("partials/header.ejs")%>
 <section>
-    <div class="display-3 text-center game-name text-white p-3"><%=gameData.name%></div>
-    <img src="<%= gameData.background_image %> " alt="" class="img-fluid">
-    <div class="text-center text-white game-name">
+    <div class="display-3 text-center color-dark-blue text-white p-3"><%=gameSearchResults[0].name%></div>
+    <img src="<%= gameSearchResults[0].background_image %> " alt="" class="img-fluid">
+    <div class="text-center text-white color-dark-blue">
         <h3 class="mb-0 pb-0">Release</h3>
-        <div class="display-4"><%=gameData.released  %> </div>
-
+        <div class="display-4"><%=gameSearchResults[0].released  %> </div>
     </div>
 </section>
 <section>
-    <div class="container color-light-blue">
+    <div class="container color-red text-white">
         <div class="description-game ">
             <p>
-            <h2 class="desc">Description</h2>
+            <h2 class="d-inline color-likePurple">Description</h2>
             </p>
-            <%-gameData.description %>
+            <%-gameSearchResults[0].description %>
         </div>
     </div>
     <div class="rating-game mr-0 pr-0 mt-0">
         <h5 class="text-white text-center mb-0">Rating</h5>
-        <h1 class="text-white hvr-icon-pop px-1 mt-0 pt-0 "><%= gameData.rating%><i
+        <h1 class="text-white hvr-icon-pop px-1 mt-0 pt-0 mb-2 "><%= gameSearchResults[0].rating%><i
                 class="fas fa-star fa-sm hvr-icon"></i>
         </h1>
     </div>
-    <% if(gameData.reddit_url.length>1){ %>
-    <a href=" <%=gameData.reddit_url%> " class="btn color-reddit text-white p-2">Reddit <i
+    <% if(gameSearchResults[0].reddit_url.length>1){ %>
+    <a href=" <%=gameSearchResults[0].reddit_url%> " class="btn color-reddit text-white p-2">Reddit <i
             class="fab fa-reddit fa-lg"></i></a>
     <% } %>
-    <% if(gameData.clip){ %>
+    <% if(gameSearchResults[0].clip){ %>
+    <br>
     <div class="video-space container px-0 text-center text-white">
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-            poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-            <source src="<%= gameData.clip.clip %> " type="video/mp4" />
+        <video id="my-video" class="video-js" controls preload="auto" width="720" height="480"
+            poster="MY_VIDEO_POSTER.jpg" data-setup="{}" class="text-center">
+            <source src="<%= gameSearchResults[0].clip.clip %> " type="video/mp4" />
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a
                 web browser that
