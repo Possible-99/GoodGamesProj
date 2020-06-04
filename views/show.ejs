@@ -1,12 +1,11 @@
 <%- include("partials/header.ejs")%>
 <section>
-    <div class="game-card">
-        <div class="text-white text-center p-2 title-card"><%=gameData.name%> </div>
-        <img src="<%=gameData.background_image%>" alt="" class="img-card img-fluid">
-        <div class="text-center color-likePurple">
-            <h3 class="p-0 m-0 text-white">Released</h3>
-            <p class="text-white"><%=gameData.released%></p>
-        </div>
+    <div class="display-3 text-center game-name text-white p-3"><%=gameData.name%></div>
+    <img src="<%= gameData.background_image %> " alt="" class="img-fluid">
+    <div class="text-center text-white game-name">
+        <h3 class="mb-0 pb-0">Release</h3>
+        <div class="display-4"><%=gameData.released  %> </div>
+
     </div>
 </section>
 <section>
@@ -28,7 +27,7 @@
     <a href=" <%=gameData.reddit_url%> " class="btn color-reddit text-white p-2">Reddit <i
             class="fab fa-reddit fa-lg"></i></a>
     <% } %>
-    <% if(gameData.clip.clip.length>1){ %>
+    <% if(gameData.clip){ %>
     <div class="video-space container px-0 text-center text-white">
         <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
             poster="MY_VIDEO_POSTER.jpg" data-setup="{}">

@@ -4,7 +4,7 @@ html,body{
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background: #3B8BE8 !important;
+    background: white !important;
 }
 .navbar{
     background: #B23850;
@@ -37,7 +37,7 @@ body{
     text-transform: uppercase;
 }
 .color-card{
-    background: #E7E3D4;
+    background: #3B8BE8 !important;
 }
 
 .last-color{
@@ -272,5 +272,8 @@ body{
 }
 .video-space{
     margin-top: 5rem;
+    background: #8590aa;
+}
+.game-name{
     background: #8590aa;
 }
