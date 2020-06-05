@@ -26,20 +26,67 @@
     <a href=" <%=gameSearchResults[0].reddit_url%> " class="btn color-reddit text-white p-2">Reddit <i
             class="fab fa-reddit fa-lg"></i></a>
     <% } %>
-    <% if(gameSearchResults[0].clip){ %>
-    <br>
-    <div class="video-space container px-0 text-center text-white">
-        <video id="my-video" class="video-js" controls preload="auto" width="720" height="480"
-            poster="MY_VIDEO_POSTER.jpg" data-setup="{}" class="text-center">
-            <source src="<%= gameSearchResults[0].clip.clip %> " type="video/mp4" />
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a
-                web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-        </video>
-    </div>
-    <% } %>
+    <section>
+        <% if(gameSearchResults[0].clip){ %>
+        <br>
+        <div class="video-space container-fluid px-0 text-center text-white color-likePurple p-1">
 
+            <video id="my-video" class="video-js" controls preload="auto" width="720" height="480"
+                poster="MY_VIDEO_POSTER.jpg" data-setup="{}" class="text-center">
+                <source src="<%= gameSearchResults[0].clip.clip %> " type="video/mp4" />
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </div>
+        <br>
+        <% } %>
+    </section>
+    <section>
+        <div class="container">
+            <% if(gameSearchResults[1]){ %>
+            <% gameSearchResults[1].results.forEach(function(game){ %>
+            <button class="mb-2 d-inline btn btn-info rounded-pill "><a href="/game/<%=game.id%>"
+                    class="anker-properties-off"><%=game.name%></a></button>
+            <% }) %>
+            <% }%>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <a href="#" class="btn btn-dark float-right">Write a comment</a>
+            <div class="comment border">
+                <div class="user-name">Possible99</div>
+                <div class="date-comment">17-Febrero-2020</div>
+                <div class="comment-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab officiis
+                    earum,
+                    voluptate obcaecati dolores, animi vitae facilis illo libero quae architecto autem perferendis
+                    natus
+                    placeat assumenda unde quibusdam? Amet consequatur, recusandae optio, tempora voluptatum eos
+                    eligendi impedit dicta in atque deleniti aliquid consectetur ab at eaque ratione, nostrum error
+                    debitis aliquam assumenda dolorum obcaecati inventore exercitationem quidem. Officia quis vero
+                    atque
+                    quos dolorem nobis corporis explicabo, animi, aperiam a eligendi.</div>
+                <div class="like-count mt-1">A 100 personas le gusta</div>
+                <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
+            </div>
+            <div class="comment border">
+                <div class="user-name">Possible99</div>
+                <div class="date-comment">17-Febrero-2020</div>
+                <div class="comment-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab officiis
+                    earum,
+                    voluptate obcaecati dolores, animi vitae facilis illo libero quae architecto autem perferendis
+                    natus
+                    placeat assumenda unde quibusdam? Amet consequatur, recusandae optio, tempora voluptatum eos
+                    eligendi impedit dicta in atque deleniti aliquid consectetur ab at eaque ratione, nostrum error
+                    debitis aliquam assumenda dolorum obcaecati inventore exercitationem quidem. Officia quis vero
+                    atque
+                    quos dolorem nobis corporis explicabo, animi, aperiam a eligendi.</div>
+                <div class="like-count mt-1">A 100 personas le gusta</div>
+                <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
+            </div>
+    </section>
 </section>
 <%- include("partials/footer.ejs")%>

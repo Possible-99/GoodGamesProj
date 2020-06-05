@@ -278,3 +278,39 @@ body{
     margin: auto;
     display: block;
 }
+.anker-properties-off{
+    text-decoration: none !important;
+    color: white;
+    
+}
+.anker-properties-off:hover{
+    background: none !important;
+    transition-property: none !important;
+    color: none !important;
+}
+.user-name{
+    font-size: 1em;
+    
+}
+.date-comment{
+    font-size: 1.1em;
+    font-weight: 100;
+    color: #555555;
+}
+.comment{
+    padding: 2em;
+}
+.comment-desc{
+    font-size: 1em;
+    font-weight: 400;
+    color: #696969;
+}
+.comment-like-button{
+    background: #003791 !important;
+    outline: none;
+    border: none !important;
+}
+.comment-like-button:hover{
+    background: #003791;
+    opacity: 0.9;
+}
