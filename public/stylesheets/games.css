@@ -249,7 +249,7 @@ body{
     background: #C4DBF6;
 }
 .color-dark-blue{
-    background: #3B8BE8;
+    background: #3B8BE8 !important;
 }
 .color-red{
     background: #B23850;
@@ -314,3 +314,51 @@ body{
     background: #003791;
     opacity: 0.9;
 }
+
+/*Register Form*/
+.gradient-background{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+}
+.register-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    border: 3px solid #B23850;
+}
+.register-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: black;
+    text-align: center;
+}
+
+.register-box .user-box {
+    position: relative;
+}
+
+.register-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #B23850;
+    outline: none;
+    background: transparent;
+}
+
+.register-box .user-box input::placeholder{
+    color: #B23850;
+    opacity: 1;
+}
+

@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs")%>
+<div class="container-fluid gradient-background">
+    <div class="register-box">
+        <div class="display-4 text-center">Login</div>
+        <form action="/login" method="POST">
+            <div class="user-box">
+                <input type="text" name="username" required="" placeholder="Username">
+
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="" placeholder="Password">
+            </div>
+            <button class="btn btn-md color-dark-blue">Submit</button>
+    </div>
+    <%- include("partials/footer.ejs")%>

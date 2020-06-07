@@ -1,12 +1,34 @@
-var express = require("express")
-var app = express()
-var request = require("request")
+const express = require("express")
+const app = express()
+const request = require("request")
 const async = require("async")
-
+const methodOverride = require("method-override")
+const bodyParser = require("body-parser")
+const mongoose = require("mongoose")
+const passport = require("passport")
+const LocalStrategy = require("passport-local")
+const User = require("./models/user")
 
 
 //app config
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride("_method"))
+
+//Database
+mongoose.connect("mongodb://localhost:27017/GoodGames", { useNewUrlParser: true })
+
+// passport configx 
+app.use(require("express-session")({
+    secret: "ea5e0d6bec83ab66f6571c616609a2703f54952f1e1f79045176a431cb9a045c",
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 //Routes
 app.get("/", function (req, res) {
@@ -25,6 +47,7 @@ app.get('/search', function (req, res) {
 });
 
 app.get("/game/:id", function (req, res) {
+    //Change this function to only return the array
     multipleRequests(req.params.id, req, res, "show.ejs")
 })
 
@@ -58,12 +81,51 @@ function multipleRequests(game, req, res, templateName) {
             });
         }], function (err, gameSearchResults) {
             //Send an array with the info, in gameSearchResults[0] is the info of the game, gameSearchResults[1]-->Game Series data
-            res.render(templateName, {
+            return res.render(templateName, {
                 gameSearchResults: gameSearchResults
             });
         })
 }
 
+//Handling register and loogin
+app.get("/register", function (req, res) {
+    res.render("register.ejs")
+})
+app.post("/register", function (req, res) {
+    var today = new Date();
+    var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var newUser = new User({ username: req.body.username, registerDate: currentDate })
+    User.register(newUser, req.body.password, function (err, user) {
+        if (err) {
+            //Implement error message
+            res.redirect("register.ejs")
+        }
+        //This login the user
+        passport.authenticate("local")(req, res, function () {
+            //Implement success message
+            res.redirect("/")
+        })
+    })
+
+})
+app.get("/login", function (req, res) {
+    res.render("login.ejs")
+})
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+}), (req, res) => {
+})
+app.get("/logout", function (req, res) {
+    // 	This method will logout the user
+    req.logout()
+    res.redirect("/")
+})
+
+app.get("/game/:id/comments/new", function (req, res) {
+    res.render("./comments/new.ejs")
+})
 app.listen(3000, function () {
     console.log("Server is on")
 })
