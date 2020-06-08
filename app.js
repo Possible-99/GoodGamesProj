@@ -7,7 +7,9 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
-const User = require("./models/user")
+const User = require("./models/user.js")
+const Comment = require("./models/comment.js")
+const middleWares = require("./middleware/middlewares.js")
 
 
 //app config
@@ -47,11 +49,24 @@ app.get('/search', function (req, res) {
 });
 
 app.get("/game/:id", function (req, res) {
+    Comment.find({ gameId: req.params.id }, function (err, gameComments) {
+        if (gameComments.length > 0) {
+            console.log(gameComments)
+            if (err) {
+                res.redirect("back")
+            } else {
+                res.locals.comments = gameComments
+            }
+        }
+        else {
+            res.locals.comments = false
+        }
+    })
     //Change this function to only return the array
     multipleRequests(req.params.id, req, res, "show.ejs")
 })
 
-function multipleRequests(game, req, res, templateName) {
+function multipleRequests(game, req, res, template) {
     async.parallel([
         //game info
         function (done) {
@@ -81,9 +96,7 @@ function multipleRequests(game, req, res, templateName) {
             });
         }], function (err, gameSearchResults) {
             //Send an array with the info, in gameSearchResults[0] is the info of the game, gameSearchResults[1]-->Game Series data
-            return res.render(templateName, {
-                gameSearchResults: gameSearchResults
-            });
+            return res.render(template, { gameSearchResults: gameSearchResults })
         })
 }
 
@@ -122,10 +135,34 @@ app.get("/logout", function (req, res) {
     req.logout()
     res.redirect("/")
 })
+// Comment Routes
 
-app.get("/game/:id/comments/new", function (req, res) {
-    res.render("./comments/new.ejs")
+app.get("/game/:id/comments/new", middleWares.isLoggedIn, function (req, res) {
+    res.render("./comments/new.ejs", { gameId: req.params.id })
 })
+app.post("/game/:id/comments", middleWares.isLoggedIn, function (req, res) {
+    var newComment = {}
+    newComment.text = req.body.text
+    newComment.gameId = req.params.id
+    console.log(newComment)
+    var today = new Date();
+    var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    newComment.created = currentDate
+    console.log(newComment)
+    newComment.author = {}
+    newComment.author.id = req.user._id;
+    newComment.author.username = req.user.username
+    Comment.create(newComment, function (err, commentCreated) {
+        if (err) {
+            console.log(err)
+            res.redirect("back")
+        } else {
+            res.redirect("/game/" + req.params.id)
+        }
+    })
+})
+
+
 app.listen(3000, function () {
     console.log("Server is on")
 })

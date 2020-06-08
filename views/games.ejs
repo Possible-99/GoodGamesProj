@@ -1,10 +1,11 @@
 <%- include("partials/header.ejs")%>
 <section>
-    <div class="container-fluid" id="inp-contai">
+    <div class="container-fluid " id="inp-contai">
         <div class="display-2 text-center text-white animate__animated animate__fadeInUp" id="text-search">Search a
             videogame</div>
         <form action="/search" class="text-center" method="GET">
-            <input type="text" id="" name="game" placeholder="Grand theft Auto" class="form-control mt-2 " id="gameInp">
+            <input type="text" id="" name="game" placeholder="Grand theft Auto" class="form-control mt-2 " id="gameInp"
+                required>
             <button class="btn btn-lg btn-danger text-white hvr-bounce-in  mt-2"><i class="fas fa-search"></i>
                 Buscar</button>
         </form>

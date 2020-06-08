@@ -55,39 +55,20 @@
         </div>
     </section>
     <section>
-        <div class="container">
-            <a href="/game/<%= gameSearchResults[0].id%>/comments/new " class="btn btn-dark float-right">Write a
+        <div class="container" id="wrap-container">
+            <a href="/game/<%= gameSearchResults[0].id%>/comments/new " class="btn btn-dark float-right mb-2">Write a
                 comment</a>
+            <% if(comments){ %>
+            <% comments.forEach(function(comment){ %>
             <div class="comment border">
-                <div class="user-name">Possible99</div>
-                <div class="date-comment">17-Febrero-2020</div>
-                <div class="comment-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab officiis
-                    earum,
-                    voluptate obcaecati dolores, animi vitae facilis illo libero quae architecto autem perferendis
-                    natus
-                    placeat assumenda unde quibusdam? Amet consequatur, recusandae optio, tempora voluptatum eos
-                    eligendi impedit dicta in atque deleniti aliquid consectetur ab at eaque ratione, nostrum error
-                    debitis aliquam assumenda dolorum obcaecati inventore exercitationem quidem. Officia quis vero
-                    atque
-                    quos dolorem nobis corporis explicabo, animi, aperiam a eligendi.</div>
+                <div class="user-name"><%=comment.author.username  %> </div>
+                <div class="date-comment"><%=comment.created  %> </div>
+                <div class="comment-desc"><%=comment.text%> </div>
                 <div class="like-count mt-1">A 100 personas le gusta</div>
                 <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
             </div>
-            <div class="comment border">
-                <div class="user-name">Possible99</div>
-                <div class="date-comment">17-Febrero-2020</div>
-                <div class="comment-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab officiis
-                    earum,
-                    voluptate obcaecati dolores, animi vitae facilis illo libero quae architecto autem perferendis
-                    natus
-                    placeat assumenda unde quibusdam? Amet consequatur, recusandae optio, tempora voluptatum eos
-                    eligendi impedit dicta in atque deleniti aliquid consectetur ab at eaque ratione, nostrum error
-                    debitis aliquam assumenda dolorum obcaecati inventore exercitationem quidem. Officia quis vero
-                    atque
-                    quos dolorem nobis corporis explicabo, animi, aperiam a eligendi.</div>
-                <div class="like-count mt-1">A 100 personas le gusta</div>
-                <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
-            </div>
+            <% }) %>
+            <% } %>
     </section>
 </section>
 <%- include("partials/footer.ejs")%>

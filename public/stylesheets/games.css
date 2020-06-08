@@ -16,7 +16,7 @@ body{
 #inp-contai{
     background: white;
     background: url("https://images.unsplash.com/photo-1585857189141-003ab7bbbe10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
-    padding: 6rem;
+    padding: 16rem;
     background-position: center;
     background-size: cover;
     opacity: 100%;
@@ -289,11 +289,12 @@ body{
     color: none !important;
 }
 .user-name{
-    font-size: 1em;
+    font-size: 1.5em;
+    font-weight: 900;
     
 }
 .date-comment{
-    font-size: 1.1em;
+    font-size:1em;
     font-weight: 100;
     color: #555555;
 }
@@ -301,9 +302,9 @@ body{
     padding: 2em;
 }
 .comment-desc{
-    font-size: 1em;
-    font-weight: 400;
-    color: #696969;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: black;
 }
 .comment-like-button{
     background: #003791 !important;
@@ -361,4 +362,53 @@ body{
     color: #B23850;
     opacity: 1;
 }
+/* Coment form */
+.comment-form{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    background: white;
+    padding: 1rem;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 3px solid #B23850;
+}
+.comment-textarea{
+    height: 400px !important;
+}
+#wrap-container{
+    word-wrap: break-word;
+}
 
+@media(max-width:700px){
+    .comment-form{
+        width: 400px !important;
+    }
+    .form-control{
+        width: 200px !important;
+        font-size: 1rem !important;
+        position: relative;
+        left: 150px;
+    }
+    .display-2{
+        font-size: 4rem !important;
+        padding-top: 2em;
+    }
+    #inp-contai{
+        padding: 0;
+        height: 400px;
+    }
+}
+@media(max-width:710px){
+    .game-name-search{
+        font-size: 2em;
+        left: 0px;
+    }
+    .text-size-xs{
+        font-size: 2.5rem !important;
+    }
+    .video-js{
+        width: 400px !important;
+    }
+}

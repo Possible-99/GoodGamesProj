@@ -1,1 +1,16 @@
-<h1>andjisanidknask</h1>
+<%- include("../partials/header.ejs")%>
+<div class=" gradient-background">
+    <div class="comment-form">
+        <h1 class="text-center">Create a comment</h1>
+        <form action="/game/<%=gameId.toString()%>/comments" method="POST" class="form-group">
+            <div class="form-group ">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea maxlength="400" class="form-control comment-textarea" id="comment-keypress" name="text"
+                    placeholder="The best..."></textarea>
+                <h4 class="d-inline mt-2"><span id="numbCharac"></span>/400</h4>
+                <button class="btn btn-success float-right mt-2 ">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include("../partials/footer.ejs")%>
