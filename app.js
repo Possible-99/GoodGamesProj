@@ -49,12 +49,12 @@ app.get('/search', function (req, res) {
 });
 
 app.get("/game/:id", function (req, res) {
-    Comment.find({ gameId: req.params.id }, function (err, gameComments) {
+    Comment.find({ gameId: req.params.id }).sort({ created: -1 }).exec(function (err, gameComments) {
         if (gameComments.length > 0) {
-            console.log(gameComments)
             if (err) {
                 res.redirect("back")
             } else {
+                console.log(gameComments)
                 res.locals.comments = gameComments
             }
         }
