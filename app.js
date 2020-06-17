@@ -31,7 +31,13 @@ app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
-
+// To add a variable to every route, we do this
+app.use(function (req, res, next) {
+    // 	We give to a our variable currentUser(is goint to be in every route) his value.
+    // 	Remember, the method flash is inside request
+    res.locals.currentUser = req.user
+    next()
+})
 //Routes
 app.get("/", function (req, res) {
     var url = "https://api.rawg.io/api/games?dates=2020-05-25,2020-10-10&ordering=-added"
@@ -54,7 +60,6 @@ app.get("/game/:id", function (req, res) {
             if (err) {
                 res.redirect("back")
             } else {
-                console.log(gameComments)
                 res.locals.comments = gameComments
             }
         }
@@ -73,29 +78,58 @@ function multipleRequests(game, req, res, template) {
             var queryName = game;
             //change the spaces for hiffens
             var gameName = queryName.replace(/\s+/g, '-').toLowerCase()
+            console.log(gameName)
             var gmSearchURL = "https://api.rawg.io/api/games/" + gameName;
+            console.log("entre")
             request(gmSearchURL, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var data = JSON.parse(body);
+                    console.log("data-11")
+                    if (data.redirect) {
+                        console.log("recursividad1")
+                        return multipleRequests(data.slug, req, res, template)
+                    }
+                    console.log("return data1")
                     done(null, data);
+                } else {
+                    console.log("falseeee11")
+                    done(null, false)
                 }
             });
+            console.log("hereeeeee1")
         },
         // Game series
         function (done) {
             var queryName = game;
             var gameName = queryName.replace(/\s+/g, '-').toLowerCase()
+            console.log(gameName)
             var gmSearchURL = "https://api.rawg.io/api/games/" + gameName + "/game-series";
             request(gmSearchURL, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     // console.log(body) 
+                    console.log("entr antes de JSOn 22")
                     var data = JSON.parse(body);
-                    // below shows whole object of result 0
+                    if (data.redirect) {
+                        console.log("recursividad2")
+                        multipleRequests(data.slug, req, res, template)
+                    }
+                    console.log("return data2")
                     done(null, data);
+                } else {
+                    console.log("falseeee2")
+                    done(null, false)
                 }
             });
+            console.log("hereeeeee2")
+
+
         }], function (err, gameSearchResults) {
+            if (!gameSearchResults[0]) {
+                console.log("bye")
+                return res.redirect("/")
+            }
             //Send an array with the info, in gameSearchResults[0] is the info of the game, gameSearchResults[1]-->Game Series data
+            console.log("A punto de enviar")
             return res.render(template, { gameSearchResults: gameSearchResults })
         })
 }
@@ -111,7 +145,7 @@ app.post("/register", function (req, res) {
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
             //Implement error message
-            res.redirect("register.ejs")
+            res.redirect("back")
         }
         //This login the user
         passport.authenticate("local")(req, res, function () {
@@ -144,17 +178,14 @@ app.post("/game/:id/comments", middleWares.isLoggedIn, function (req, res) {
     var newComment = {}
     newComment.text = req.body.text
     newComment.gameId = req.params.id
-    console.log(newComment)
     var today = new Date();
     var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     newComment.created = currentDate
-    console.log(newComment)
     newComment.author = {}
     newComment.author.id = req.user._id;
     newComment.author.username = req.user.username
     Comment.create(newComment, function (err, commentCreated) {
         if (err) {
-            console.log(err)
             res.redirect("back")
         } else {
             res.redirect("/game/" + req.params.id)
@@ -162,7 +193,35 @@ app.post("/game/:id/comments", middleWares.isLoggedIn, function (req, res) {
     })
 })
 
-
+app.get("/game/:id/comments/:comment_id/edit", middleWares.checkComentOwnership, function (req, res) {
+    Comment.findById(req.params.comment_id, function (err, foundComment) {
+        if (err) {
+            res.redirect("back");
+        } else {
+            res.render("./comments/edit.ejs", { commentData: foundComment });
+        }
+    });
+})
+app.put("/game/:id/comments/:comment_id", middleWares.checkComentOwnership, (req, res) => {
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, foundComment) {
+        if (err) {
+            res.redirect("back")
+        } else {
+            console.log(foundComment)
+            res.redirect("/game/" + req.params.id)
+        }
+    })
+})
+app.delete("/game/:id/comments/:comment_id", middleWares.checkComentOwnership, function (req, res) {
+    Comment.findByIdAndRemove(req.params.comment_id, function (err) {
+        if (err) {
+            res.redirect("back")
+        }
+        else {
+            res.redirect("/game/" + req.params.id)
+        }
+    })
+})
 app.listen(3000, function () {
     console.log("Server is on")
 })

@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs")%>
 <section>
     <div class="display-3 text-center color-dark-blue text-white p-3"><%=gameSearchResults[0].name%></div>
-    <img src="<%= gameSearchResults[0].background_image %> " alt="" class="img-fluid">
+    <img src="<%= gameSearchResults[0].background_image %> " alt="" class="img-fluid" style="width:100%;">
     <div class="text-center text-white color-dark-blue">
         <h3 class="mb-0 pb-0">Release</h3>
         <div class="display-4"><%=gameSearchResults[0].released  %> </div>
@@ -64,8 +64,16 @@
                 <div class="user-name"><%=comment.author.username  %> </div>
                 <div class="date-comment"><%=comment.created  %> </div>
                 <div class="comment-desc"><%=comment.text%> </div>
-                <div class="like-count mt-1">A 100 personas le gusta</div>
+                <div class="like-count mt-1 mb-1">A 100 personas le gusta</div>
                 <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
+                <% if(currentUser&&comment.author.id.equals(currentUser._id)){ %>
+                <a href="/game/<%=gameSearchResults[0].id  %>/comments/<%=comment._id  %>/edit "
+                    class="ml-2 btn btn-warning btn-md d-inline mt-3 p-2">Edit</a>
+                <form action="/game/<%=gameSearchResults[0].id%>/comments/<%=comment._id  %>?_method=DELETE"
+                    method="POST" class="d-inline mt-3 ml-2">
+                    <button class=" btn btn-danger btn-md d-inline  p-2">Delete</button>
+                </form>
+                <% } %>
             </div>
             <% }) %>
             <% } %>
