@@ -393,7 +393,7 @@ body{
     word-wrap: break-word;
 }
 
-@media(max-width:700px){
+@media(max-width:768px){
     .comment-form{
         width: 400px !important;
     }
@@ -412,7 +412,7 @@ body{
         height: 400px;
     }
 }
-@media(max-width:710px){
+@media(max-width:778px){
     .game-name-search{
         font-size: 2em;
         left: 0px;
