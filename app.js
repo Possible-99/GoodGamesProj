@@ -19,7 +19,7 @@ app.use(methodOverride("_method"));
 //Database
 const mongoUrlConnect =
   process.env.mongoUrlConnect ||
-  "mongodb+srv://juan:4iVxGWjv1aKC0JAg@goodgamesproj.gwczm.mongodb.net/<dbname>?retryWrites=true&w=majority";
+  "mongodb+srv://heroku_good:i8jckuF7aL6ZmRGb@goodgamesproj.gwczm.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(mongoUrlConnect, { useNewUrlParser: true });
 
 // passport configx
