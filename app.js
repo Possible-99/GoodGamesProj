@@ -17,7 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //Database
-mongoose.connect(process.env.mongoUrlConnect, { useNewUrlParser: true });
+const mongoUrlConnect =
+  process.env.mongoUrlConnect ||
+  "mongodb+srv://juan:4iVxGWjv1aKC0JAg@goodgamesproj.gwczm.mongodb.net/<dbname>?retryWrites=true&w=majority";
+mongoose.connect(mongoUrlConnect, { useNewUrlParser: true });
 
 // passport configx
 app.use(
