@@ -64,8 +64,8 @@
                 <div class="user-name"><%=comment.author.username  %> </div>
                 <div class="date-comment"><%=comment.created  %> </div>
                 <div class="comment-desc"><%=comment.text%> </div>
-                <div class="like-count mt-1 mb-1">A 100 personas le gusta</div>
-                <a href="#" class="btn btn-success comment-like-button btn-md">Like</a>
+                <!-- <div class="like-count mt-1 mb-1">A 100 personas le gusta</div>
+                <a href="#" class="btn btn-success comment-like-button btn-md">Like</a> -->
                 <% if(currentUser&&comment.author.id.equals(currentUser._id)){ %>
                 <a href="/game/<%=gameSearchResults[0].id  %>/comments/<%=comment._id  %>/edit "
                     class="ml-2 btn btn-warning btn-md d-inline mt-3 p-2">Edit</a>
