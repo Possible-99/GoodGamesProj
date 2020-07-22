@@ -18,13 +18,13 @@ app.use(methodOverride("_method"));
 
 //Database
 const mongoUrlConnect =
-  process.env.mongoUrlConnect ||
-  "mongodb+srv://heroku_good:i8jckuF7aL6ZmRGb@goodgamesproj.gwczm.mongodb.net/<dbname>?retryWrites=true&w=majority";
+  process.env.mongoUrlConnect || "mongodb://localhost/goodgames";
 mongoose
   .connect(mongoUrlConnect, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
+  .then(() => console.log("DB connected"))
   .catch((err) => console.log(err.message));
 
 // passport configx
