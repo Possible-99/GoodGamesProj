@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //Database
-mongoose.connect(mongoUrlConnect, { useNewUrlParser: true });
+mongoose.connect(process.env.mongoUrlConnect, { useNewUrlParser: true });
 
 // passport configx
 app.use(
